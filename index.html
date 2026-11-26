@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@300;400;500;600&family=Pinyon+Script&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+/* VOICE: tender, festive, unhurried — a Kerala wedding card you open with a finger.
+   IDEA: a sealed envelope with a gold wax seal; tap it and the card comes out to you.
+   PICTURE: the envelope full-screen, then the card with a jasmine-and-leaf arch over the names.
+   COLOUR and TYPE: deep leaf green field, ivory card, kasavu gold; Pinyon Script names, Anek Malayalam text.
+   LAYOUT: one centred column like a printed card, details stacked below, sticky RSVP bar. */
+:root{color-scheme:light;--g:#0e3a2c;--g2:#155440;--iv:#fffaf0;--gold:#c69b3c;--gold2:#e8c877;--ink:#2a2418;--mut:#6d6250}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0}
+body{background:var(--g);color:var(--ink);font:17px/1.6 "Anek Malayalam",system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+/* ---------- envelope intro ---------- */
+#intro{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 35%,var(--g2),var(--g) 70%);transition:opacity .9s ease .9s,visibility 0s 1.8s;cursor:pointer;padding:20px}
+#intro.open{opacity:0;visibility:hidden}
+.env{position:relative;width:min(86vw,420px);aspect-ratio:1.45;perspective:900px}
+.env .back{position:absolute;inset:0;background:#efe3c8;border-radius:6px;box-shadow:0 30px 60px #0007}
+.env .pocket{position:absolute;inset:0;background:linear-gradient(160deg,#f7edd6,#e9dabb);clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%);border-radius:6px;z-index:3}
+.env .pocket::after{content:"";position:absolute;left:6%;right:6%;bottom:9%;height:2px;background:repeating-linear-gradient(90deg,var(--gold) 0 10px,transparent 10px 16px);opacity:.7}
+.env .flap{position:absolute;inset:0 0 auto 0;height:62%;background:linear-gradient(180deg,#f3e6c9,#e3d1ac);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s cubic-bezier(.5,0,.3,1),z-index 0s .4s;z-index:4}
+.env .peek{position:absolute;left:8%;right:8%;top:10%;bottom:8%;background:var(--iv);border-radius:4px;z-index:2;transition:transform .8s ease .5s;display:grid;place-items:center}
+.env .peek span{font:28px "Pinyon Script",cursive;color:var(--g)}
+.seal{position:absolute;left:50%;top:62%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;z-index:5;background:radial-gradient(circle at 35% 30%,#e7c46c,#b5862a 55%,#8a6418);box-shadow:0 4px 10px #0006,inset 0 0 0 5px #0002;display:grid;place-items:center;color:#5a3f0b;font:26px "Pinyon Script",cursive;transition:transform .5s,opacity .5s}
+#intro.open .seal{transform:scale(1.4);opacity:0}
+#intro.open .flap{transform:rotateX(180deg);z-index:1}
+#intro.open .peek{transform:translateY(-38%)}
+.tap{position:absolute;bottom:max(7vh,30px);left:0;right:0;text-align:center;color:var(--gold2);font-size:16px;letter-spacing:.02em}
+.tap b{display:block;font:22px "Pinyon Script",cursive;font-weight:400}
+.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.07)}}
+/* ---------- card ---------- */
+main{max-width:560px;margin:0 auto;padding:28px 16px 120px}
+.card{position:relative;background:var(--iv);border-radius:10px;padding:clamp(28px,6vw,48px) clamp(20px,5vw,40px);text-align:center;box-shadow:0 24px 60px #0006;outline:1px solid var(--gold);outline-offset:-12px}
+.arch{display:block;width:100%;max-width:360px;height:auto;margin:-6px auto 6px}
+.bless{color:var(--mut);font-size:15px;margin:0 0 6px}
+h1{font:400 clamp(46px,13vw,68px)/1.05 "Pinyon Script",cursive;color:var(--g);margin:6px 0;text-wrap:balance}
+h1 .amp{display:block;font-size:.55em;color:var(--gold);margin:4px 0}
+.par{font-size:14px;color:var(--mut);margin:0 0 4px}
+.inv{font-size:18px;margin:18px auto;max-width:34ch}
+.inv small{display:block;color:var(--mut);font-size:15px;margin-top:6px}
+.rule{width:120px;height:14px;margin:18px auto;display:block}
+.date{display:flex;justify-content:center;align-items:center;gap:16px;font-family:Marcellus,serif;color:var(--g)}
+.date .d{font-size:52px;line-height:1;padding:0 16px;border-inline:1px solid var(--gold)}
+.date .s{font-size:15px;letter-spacing:.05em;line-height:1.4;text-align:center}
+.cd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:24px 0 4px}
+.cd div{background:#f4ead3;border-radius:8px;padding:10px 4px}
+.cd b{display:block;font:28px/1.1 Marcellus,serif;color:var(--g)}
+.cd span{font-size:13px;color:var(--mut)}
+/* sections */
+.sec{margin-top:18px;background:var(--iv);border-radius:10px;padding:24px clamp(18px,5vw,32px);box-shadow:0 14px 40px #0004}
+.sec h2{font:400 34px/1.1 "Pinyon Script",cursive;color:var(--g);margin:0 0 12px;text-align:center}
+.ev{display:grid;grid-template-columns:92px 1fr;gap:14px;padding:14px 0;border-top:1px dashed #d9c79c}
+.ev:first-of-type{border-top:0}
+.ev .t{font:20px/1.2 Marcellus,serif;color:var(--g);white-space:nowrap}
+.ev .t small{display:block;font:14px "Anek Malayalam";color:var(--mut)}
+.ev h3{margin:0;font-size:18px;font-weight:600}
+.ev p{margin:2px 0 0;color:var(--mut);font-size:15px}
+.venue{text-align:center}
+.venue strong{display:block;font-size:20px}
+.venue p{margin:4px 0 16px;color:var(--mut)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border-radius:999px;border:1px solid var(--g);background:transparent;color:var(--g);font:500 16px "Anek Malayalam";text-decoration:none;cursor:pointer}
+.btn.fill{background:var(--g);color:var(--iv)}
+.btn:focus-visible,#intro:focus-visible{outline:3px solid var(--gold2);outline-offset:3px}
+.btn svg{width:18px;height:18px;flex:none}
+.foot{text-align:center;color:var(--gold2);margin-top:28px;font-size:15px}
+.foot b{display:block;font:30px "Pinyon Script",cursive;font-weight:400}
+.note{text-align:center;color:#ffffff70;font-size:13px;margin-top:10px}
+/* sticky bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;gap:10px;justify-content:center;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(transparent,#0b2e23 40%)}
+.bar .btn{border-color:var(--gold2);color:var(--gold2)}
+.bar .btn.fill{background:var(--gold);border-color:var(--gold);color:#2a1e05}
+#mute{width:46px;padding:0;justify-content:center}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#000c;color:#fff;padding:8px 16px;border-radius:999px;font-size:15px;opacity:0;transition:opacity .3s;z-index:30;pointer-events:none}
+.toast.on{opacity:1}
+/* petals */
+.petal{position:fixed;top:-30px;z-index:15;pointer-events:none;width:16px;height:16px;animation:fall linear forwards}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--r))}}
+.rise{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+.rise.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rise{opacity:1;transform:none}}
+@media(max-width:380px){.date .d{font-size:42px;padding:0 10px}.ev{grid-template-columns:78px 1fr}}
+</style>
+</head>
+<body>
+<div id="intro" role="button" tabindex="0" aria-label="Open the invitation">
+  <div class="env pulse" id="env">
+    <div class="back"></div>
+    <div class="peek"><span id="peekNames"></span></div>
+    <div class="flap"></div>
+    <div class="pocket"></div>
+    <div class="seal" id="seal"></div>
+  </div>
+  <div class="tap"><b>You're invited</b>Tap to open</div>
+</div>
+
+<main id="main">
+  <article class="card rise">
+    <svg class="arch" viewBox="0 0 360 90" aria-hidden="true">
+      <defs>
+        <g id="jas"><circle r="5" fill="#fff" stroke="#e6dcc4"/><circle r="1.8" fill="#e8c877"/></g>
+        <path id="leaf" d="M0 0q9-9 20 0q-11 9-20 0z" fill="#1f6b4f"/>
+      </defs>
+      <path d="M20 86Q180-30 340 86" fill="none" stroke="#c69b3c" stroke-width="1.4"/>
+      <g id="garland"></g>
+    </svg>
+    <p class="bless" id="bless"></p>
+    <h1 id="names"></h1>
+    <p class="par" id="parents"></p>
+    <p class="inv" id="invite"></p>
+    <svg class="rule" viewBox="0 0 120 14" aria-hidden="true"><path d="M0 7h46M74 7h46" stroke="#c69b3c"/><path d="M60 1l6 6-6 6-6-6z" fill="#c69b3c"/></svg>
+    <div class="date"><div class="s" id="dleft"></div><div class="d" id="dnum"></div><div class="s" id="dright"></div></div>
+    <div class="cd" id="cd"></div>
+  </article>
+
+  <section class="sec rise"><h2>Ceremonies</h2><div id="events"></div></section>
+
+  <section class="sec venue rise">
+    <h2>Venue</h2>
+    <strong id="vname"></strong>
+    <p id="vaddr"></p>
+    <div class="btns">
+      <a class="btn fill" id="map" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Location</a>
+      <a class="btn" id="cal" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Add to calendar</a>
+    </div>
+  </section>
+
+  <div class="foot rise"><b id="footHost"></b><span id="footLine"></span></div>
+  <p class="note" id="contact"></p>
+  <p class="note" style="color:#e8c877b0">Digital invitation by <b style="color:#e8c877">Align Media</b>, Mannarkkad · +91 95628 27463</p>
+</main>
+
+<div class="bar">
+  <button class="btn" id="mute" aria-label="Music"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></button>
+  <a class="btn fill" id="rsvp" target="_blank" rel="noopener">RSVP on WhatsApp</a>
+  <button class="btn" id="share">Share</button>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+{
+/* ====== EDIT DETAILS HERE ====== */
+const C={
+  groom:"Adil", bride:"Shifa", initials:"A&S",
+  bless:"By the grace of God",
+  parents:"Groom: s/o Mr. Abdul Rahman & Mrs. Sajitha · Bride: d/o Mr. Ashraf & Mrs. Rasiya",
+  invite:"We joyfully invite you and your family to celebrate our wedding",
+  inviteEn:"Your presence will make our day complete",
+  start:"2027-01-17T11:00:00+05:30", end:"2027-01-17T15:00:00+05:30",
+  events:[
+    {t:"11:00",ap:"AM",n:"Wedding",d:"Main hall"},
+    {t:"12:30",ap:"PM",n:"Lunch",d:"Dining hall"},
+    {t:"6:00",ap:"PM",n:"Reception",d:"Groom's residence"}
+  ],
+  venue:"Sample Convention Centre", addr:"Near Bus Stand, Mannarkkad, Palakkad",
+  mapQuery:"Mannarkkad bus stand",
+  host:"With love, the families",
+  phone:"919562827463"
+};
+/* ================================ */
+const $=id=>document.getElementById(id);
+const st=new Date(C.start), en=new Date(C.end);
+$("seal").textContent=C.initials;
+$("peekNames").textContent=C.groom+" & "+C.bride;
+$("bless").textContent=C.bless;
+$("names").innerHTML='';
+$("names").append(C.groom,Object.assign(document.createElement("span"),{className:"amp",textContent:"&"}),C.bride);
+$("parents").textContent=C.parents;
+$("invite").textContent=C.invite;
+$("invite").append(Object.assign(document.createElement("small"),{textContent:C.inviteEn}));
+const fmt=(o)=>new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",...o}).format(st);
+$("dleft").innerHTML='';$("dleft").append(fmt({weekday:"long"}).toUpperCase());
+$("dnum").textContent=fmt({day:"2-digit"});
+$("dright").append(fmt({month:"long"}).toUpperCase(),document.createElement("br"),fmt({year:"numeric"}));
+$("events").innerHTML=C.events.map(()=>'<div class="ev"><div class="t"></div><div><h3></h3><p></p></div></div>').join('');
+[...$("events").children].forEach((el,i)=>{const e=C.events[i];const t=el.querySelector(".t");t.textContent=e.t;t.append(Object.assign(document.createElement("small"),{textContent:e.ap}));el.querySelector("h3").textContent=e.n;el.querySelector("p").textContent=e.d});
+$("vname").textContent=C.venue;$("vaddr").textContent=C.addr;
+$("map").href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(C.mapQuery);
+const z=d=>d.toISOString().replace(/[-:]|\.\d{3}/g,"");
+$("cal").href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(C.groom+" & "+C.bride+" Wedding")+"&dates="+z(st)+"/"+z(en)+"&location="+encodeURIComponent(C.venue+", "+C.addr);
+$("rsvp").href="https://wa.me/"+C.phone+"?text="+encodeURIComponent("We will attend "+C.groom+" & "+C.bride+"'s wedding. 🙏");
+$("footHost").textContent="Thank you";$("footLine").textContent=C.host;
+$("contact").textContent="RSVP / Contact: +"+C.phone.replace(/^91/,"91 ");
+/* garland */
+let g='';for(let i=0;i<=16;i++){const t=i/16,x=20+320*t,y=(1-t)*(1-t)*86+2*(1-t)*t*-30+t*t*86;g+=i%2?`<use href="#leaf" transform="translate(${x-10} ${y+2}) rotate(${(t-.5)*80})"/>`:`<use href="#jas" transform="translate(${x} ${y})"/>`}
+document.getElementById("garland").innerHTML=g;
+/* countdown */
+const cd=$("cd");
+const tick=()=>{let s=Math.max(0,(st-Date.now())/1000|0);const v=[s/86400|0,(s%86400)/3600|0,(s%3600)/60|0,s%60],l=["Days","Hours","Minutes","Seconds"];cd.innerHTML=v.map((n,i)=>`<div><b>${String(n).padStart(2,"0")}</b><span>${l[i]}</span></div>`).join('')};
+tick();setInterval(tick,1000);
+/* reveal on scroll */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
+/* petals */
+const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+function petals(n){if(reduce)return;for(let i=0;i<n;i++){const p=document.createElement("div");p.className="petal";p.innerHTML='<svg viewBox="-8 -8 16 16"><g fill="#fff">'+[0,72,144,216,288].map(a=>`<ellipse rx="2.6" ry="5" transform="rotate(${a}) translate(0 -3.5)"/>`).join('')+'</g><circle r="1.6" fill="#e8c877"/></svg>';p.style.left=Math.random()*100+"vw";p.style.setProperty("--dx",(Math.random()*120-60)+"px");p.style.setProperty("--r",(Math.random()*720-360)+"deg");p.style.animationDuration=(5+Math.random()*5)+"s";p.style.animationDelay=(Math.random()*3)+"s";document.body.appendChild(p);setTimeout(()=>p.remove(),14000)}}
+/* soft music: warm pad + gentle bells */
+let ac,master,on=false,loop;
+const chords=[[48,55,64,71],[45,52,60,67],[41,48,57,64],[43,50,59,66]];
+const hz=m=>440*2**((m-69)/12);
+function startMusic(){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();ac.resume();
+ if(!master){master=ac.createGain();master.gain.value=.0;const lp=ac.createBiquadFilter();lp.type="lowpass";lp.frequency.value=2200;const dl=ac.createDelay();dl.delayTime.value=.42;const fb=ac.createGain();fb.gain.value=.38;master.connect(lp);lp.connect(ac.destination);lp.connect(dl);dl.connect(fb);fb.connect(dl);dl.connect(ac.destination)}
+ master.gain.setTargetAtTime(.22,ac.currentTime,1.5);let bar=0;
+ const play=()=>{const t=ac.currentTime+.05,ch=chords[bar%4];
+  ch.forEach(m=>{const o=ac.createOscillator(),g=ac.createGain();o.type="sine";o.frequency.value=hz(m);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.06,t+1.4);g.gain.linearRampToValueAtTime(0,t+4.2);o.connect(g);g.connect(master);o.start(t);o.stop(t+4.3)});
+  [0,1,2,3,2,1].forEach((k,j)=>{const o=ac.createOscillator(),g=ac.createGain(),tt=t+j*.66;o.type="triangle";o.frequency.value=hz(ch[k]+12);g.gain.setValueAtTime(0,tt);g.gain.linearRampToValueAtTime(.05,tt+.02);g.gain.exponentialRampToValueAtTime(.0005,tt+1.6);o.connect(g);g.connect(master);o.start(tt);o.stop(tt+1.7)});
+  bar++};
+ play();loop=setInterval(play,4000);on=true;$("mute").style.opacity=1}catch(e){}}
+function stopMusic(){if(master)master.gain.setTargetAtTime(0,ac.currentTime,.4);clearInterval(loop);on=false;$("mute").style.opacity=.5}
+$("mute").onclick=()=>on?stopMusic():startMusic();
+/* open */
+const intro=$("intro");
+function openCard(){if(intro.classList.contains("open"))return;$("env").classList.remove("pulse");intro.classList.add("open");startMusic();setTimeout(()=>{document.querySelectorAll(".rise").forEach(r=>io.observe(r));petals(28)},1100)}
+intro.onclick=openCard;intro.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openCard()}};
+/* share */
+const toast=m=>{const t=$("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),1800)};
+$("share").onclick=async()=>{try{await navigator.clipboard.writeText(location.href);toast("Link copied")}catch(e){toast("Copy the link from your browser")}};
+}
+</script>
+</body>
+</html>
