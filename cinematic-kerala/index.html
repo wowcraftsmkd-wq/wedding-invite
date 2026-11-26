@@ -44,9 +44,9 @@ img{display:block;max-width:100%}
 #intro:focus-visible{outline:3px solid var(--gold2);outline-offset:-6px}
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;text-align:center;color:#fff;overflow:hidden;padding:calc(30px + env(safe-area-inset-top)) 22px 26px}
-.hero .ph{position:absolute;inset:0;background:center 30%/cover no-repeat;transform:scale(1.12);transition:transform 9s ease-out}
+.hero .ph{position:absolute;inset:0;background:center 85%/cover no-repeat;transform:scale(1.12);transition:transform 9s ease-out}
 body.opened .hero .ph{transform:scale(1)}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(#f8f3eaf0 0,#f8f3eab0 22%,#f8f3ea00 46%,#0000 62%,#1b120ccc 100%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(#f8f3ea 0,#f8f3eaf2 30%,#f8f3eaa8 46%,#f8f3ea00 60%,#0000 70%,#1b120cd9 100%)}
 .hero>*{position:relative;z-index:1}
 .hero .top{color:var(--ink)}
 .hero .top p{margin:12px auto 0;max-width:30ch;font-style:italic;color:var(--mut);font-size:17px}
@@ -85,7 +85,7 @@ body.opened .hero .ph{transform:scale(1)}
 .det .row b{display:block;font:600 21px var(--sf);color:var(--ink)}
 .det .row span{color:var(--mut);font-size:16px}
 .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
-.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;border:1px solid var(--mar);color:var(--mar);background:#fff;font:600 14px var(--lf);letter-spacing:.04em;text-decoration:none;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;white-space:nowrap;border-radius:999px;border:1px solid var(--mar);color:var(--mar);background:#fff;font:600 14px var(--lf);letter-spacing:.04em;text-decoration:none;cursor:pointer}
 .btn.f{background:var(--mar);color:#fff}
 .btn svg{width:17px;height:17px;flex:none}
 .btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
@@ -249,7 +249,7 @@ function stop(){if(master)master.gain.setTargetAtTime(0,ac.currentTime,.3);clear
 $('mute').onclick=()=>on?stop():start();
 /* open */
 const intro=$('intro');
-function open(){if(intro.classList.contains('open'))return;intro.classList.add('open');start();setTimeout(()=>{document.body.classList.remove('locked');document.body.classList.add('opened');document.querySelectorAll('.rv').forEach(r=>io.observe(r));petals(30,4);setInterval(()=>petals(6,3),9000)},1500)}
+function open(){if(intro.classList.contains('open'))return;intro.classList.add('open');start();setTimeout(()=>{document.body.classList.remove('locked');document.body.classList.add('opened');document.querySelectorAll('.rv').forEach(r=>io.observe(r));petals(20,4);setInterval(()=>petals(4,3),10000)},1500)}
 intro.addEventListener('click',open);intro.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
 const toast=$('toast'),say=m=>{toast.textContent=m;toast.classList.add('on');setTimeout(()=>toast.classList.remove('on'),1800)};
 $('share').onclick=async()=>{const url=location.origin+location.pathname;try{if(navigator.share){await navigator.share({title:document.title,url});return}await navigator.clipboard.writeText(url);say('Link copied')}catch(e){if(e.name!=='AbortError')say('Copy the link from the address bar')}};
