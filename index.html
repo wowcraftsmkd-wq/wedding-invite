@@ -75,7 +75,7 @@ const base=location.href.replace(/[#?].*$/,'').replace(/index\.html$/,'').replac
 const cats=['All','Muslim','Hindu','Christian','Birthday'];
 const chips=document.querySelector('.chips'),grid=document.getElementById('grid'),toast=document.getElementById('toast');
 chips.innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c==='All'}" data-c="${c}">${c==='All'?'All 14':c+' ('+M.filter(m=>m[1]===c).length+')'}</button>`).join('');
-grid.innerHTML=M.map(([s,c,t,d])=>`<article class="item" data-c="${c}"><div class="phone"><iframe loading="lazy" tabindex="-1" title="${t} preview" src="${s}/"></iframe></div><div class="tag">${c}${c==='Birthday'?'':' wedding'}</div><h2>${t}</h2><p>${d}</p><div class="acts"><a class="b f" href="${s}/" target="_blank" rel="noopener">Open</a><button class="b" data-s="${s}" data-t="${t}">Copy message</button></div></article>`).join('');
+grid.innerHTML=M.map(([s,c,t,d])=>`<article class="item" data-c="${c}"><div class="phone"><iframe loading="lazy" scrolling="no" tabindex="-1" title="${t} preview" src="${s}/"></iframe></div><div class="tag">${c}${c==='Birthday'?'':' wedding'}</div><h2>${t}</h2><p>${d}</p><div class="acts"><a class="b f" href="${s}/" target="_blank" rel="noopener">Open</a><button class="b" data-s="${s}" data-t="${t}">Copy message</button></div></article>`).join('');
 document.getElementById('ex').textContent=base+'kerala-kasavu/?to=Rasheed';
 const fit=()=>document.querySelectorAll('.phone').forEach(p=>{p.firstChild.style.transform='scale('+p.clientWidth/390+')'});
 const ro=new ResizeObserver(fit);ro.observe(grid);
