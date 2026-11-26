@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Digital Invitations · Align Media</title>
 <meta property="og:title" content="Digital Invitations by Align Media">
-<meta property="og:description" content="Wedding and birthday invitations that open with a tap. 14 designs.">
+<meta property="og:description" content="Wedding and birthday invitations that open with a tap. 15 designs.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
@@ -58,6 +58,7 @@ footer{text-align:center;color:var(--mut);font-size:14px;padding:10px 16px 40px}
 <script>
 {
 const M=[
+["cinematic-kerala","Photo","Cinematic Kerala","Photo invitation: misty tharavad intro with fireflies, full-screen couple photo, slider, timeline and venue photo."],
 ["nikah-emerald","Muslim","Emerald Arch","Arched mihrab card, geometric star pattern, palace doors that swing open."],
 ["nikah-crescent","Muslim","Midnight Crescent","Night-sky plum with a crescent moon, twinkling stars and lanterns that rise."],
 ["nikah-rose","Muslim","Rose Jaali","Dusty-rose envelope with a gold seal and a floral jaali crown."],
@@ -73,10 +74,10 @@ const M=[
 ["birthday-gold","Birthday","Gold Milestone","Adult milestone: black and gold, a glowing \"30\" ring and confetti."],
 ["first-birthday","Birthday","First Birthday","Pastel clouds and a cake candle you blow out with a tap; music-box song."]];
 const base=location.href.replace(/[#?].*$/,'').replace(/index\.html$/,'').replace(/\/?$/,'/');
-const cats=['All','Muslim','Hindu','Christian','Birthday'];
+const cats=['All','Photo','Muslim','Hindu','Christian','Birthday'];
 const chips=document.querySelector('.chips'),grid=document.getElementById('grid'),toast=document.getElementById('toast');
-chips.innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c==='All'}" data-c="${c}">${c==='All'?'All 14':c+' ('+M.filter(m=>m[1]===c).length+')'}</button>`).join('');
-grid.innerHTML=M.map(([s,c,t,d])=>`<article class="item" data-c="${c}"><div class="phone"><iframe loading="lazy" scrolling="no" tabindex="-1" title="${t} preview" src="${s}/"></iframe></div><div class="tag">${c}${c==='Birthday'?'':' wedding'}</div><h2>${t}</h2><p>${d}</p><div class="acts"><a class="b f" href="${s}/" target="_blank" rel="noopener">Open</a><button class="b" data-s="${s}" data-t="${t}">Copy message</button></div></article>`).join('');
+chips.innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c==='All'}" data-c="${c}">${c==='All'?'All '+M.length:c+' ('+M.filter(m=>m[1]===c).length+')'}</button>`).join('');
+grid.innerHTML=M.map(([s,c,t,d])=>`<article class="item" data-c="${c}"><div class="phone"><iframe loading="lazy" scrolling="no" tabindex="-1" title="${t} preview" src="${s}/"></iframe></div><div class="tag">${c}${c==='Birthday'?'':c==='Photo'?' · wedding':' wedding'}</div><h2>${t}</h2><p>${d}</p><div class="acts"><a class="b f" href="${s}/" target="_blank" rel="noopener">Open</a><button class="b" data-s="${s}" data-t="${t}">Copy message</button></div></article>`).join('');
 document.getElementById('ex').textContent=base+'kerala-kasavu/?to=Rasheed';
 const fit=()=>document.querySelectorAll('.phone').forEach(p=>{p.firstChild.style.transform='scale('+p.clientWidth/390+')'});
 const ro=new ResizeObserver(fit);ro.observe(grid);
