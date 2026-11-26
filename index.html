@@ -16,7 +16,7 @@
 *{box-sizing:border-box;min-width:0}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Anek Malayalam",system-ui,sans-serif;overflow-x:clip}
 header{background:var(--g);color:#fff;padding:clamp(28px,5vw,56px) max(5vw,16px) clamp(24px,4vw,40px)}
-.brand{font-weight:600;color:#e8c877;font-size:15px;margin:0}
+.brand{font-weight:600;color:#e8c877;font-size:15px;margin:0;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.rs{background:#e8c877;color:#0e3a2c;border-radius:999px;padding:2px 12px;font-size:14px}
 h1{font:600 clamp(32px,6vw,52px)/1.05 "Anek Malayalam",sans-serif;margin:10px 0 8px;text-wrap:balance;max-width:16ch}
 h1 i{font:400 1.05em "Pinyon Script",cursive;color:#e8c877}
 header p{margin:0;max-width:56ch;color:#ffffffc8;font-size:17px}
@@ -45,12 +45,13 @@ footer{text-align:center;color:var(--mut);font-size:14px;padding:10px 16px 40px}
 </head>
 <body>
 <header>
-  <p class="brand">Align Media · Mannarkkad</p>
+  <p class="brand">Align Media · Mannarkkad <span class="rs">Reselling available</span></p>
   <h1>Invitations that <i>open</i> with a tap</h1>
   <p>Wedding and birthday invitations with music, location, countdown and WhatsApp RSVP. Pick a design, then send us your names, dates and photos.</p>
 </header>
 <div class="chips" role="group" aria-label="Filter designs"></div>
 <div class="grid" id="grid"></div>
+<section class="tip"><div style="margin-bottom:14px;border-left-color:#0e3a2c"><b>Reselling available</b>Agencies, studios and freelancers can resell these invitations under their own brand name and contact number. WhatsApp us for reseller rates: <a href="https://wa.me/919562827463?text=Hi%2C%20I%27m%20interested%20in%20reselling%20Align%20Media%20digital%20invitations." target="_blank" rel="noopener">+91 95628 27463</a></div></section>
 <section class="tip"><div><b>Personal link for every guest</b>Add <code>?to=Name</code> at the end of a link and the invitation greets that guest by name, e.g. <code id="ex"></code></div></section>
 <footer>Align Media · +91 95628 27463 · alignmediamkd@gmail.com</footer>
 <div class="toast" id="toast"></div>
@@ -82,7 +83,7 @@ const ro=new ResizeObserver(fit);ro.observe(grid);
 chips.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;chips.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b));grid.querySelectorAll('.item').forEach(i=>i.hidden=!(b.dataset.c==='All'||i.dataset.c===b.dataset.c));fit()});
 const say=m=>{toast.textContent=m;toast.classList.add('on');setTimeout(()=>toast.classList.remove('on'),1800)};
 grid.addEventListener('click',async e=>{const b=e.target.closest('button[data-s]');if(!b)return;
- const msg=`Hello 😊\n\nHere is a demo of Align Media's digital invitation, design "${b.dataset.t}". Open the link and tap 👇\n\n${base}${b.dataset.s}/\n\n✨ Opening animation & music\n📍 Google Maps location\n⏳ Live countdown\n📅 Add to calendar\n💬 RSVP on WhatsApp\n\nWe'll make it with your names, photos and colours, in English or Malayalam.\n\nAlign Media, Mannarkkad\n📞 +91 95628 27463`;
+ const msg=`Hello 😊\n\nHere is a demo of Align Media's digital invitation, design "${b.dataset.t}". Open the link and tap 👇\n\n${base}${b.dataset.s}/\n\n✨ Opening animation & music\n📍 Google Maps location\n⏳ Live countdown\n📅 Add to calendar\n💬 RSVP on WhatsApp\n\nWe'll make it with your names, photos and colours, in English or Malayalam.\n\n🤝 Reselling available — agencies & freelancers welcome.\n\nAlign Media, Mannarkkad\n📞 +91 95628 27463`;
  try{await navigator.clipboard.writeText(msg);say('Message copied — paste it in WhatsApp')}catch(_){say('Could not copy on this browser')}});
 }
 </script>
